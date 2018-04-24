@@ -28,6 +28,11 @@ export const fetchMonologues = () => dispatch => {
     })
     .then(data => dispatch(fetchMonologueSuccess(data)))
     .catch(err => dispatch(fetchMonologueError(err)));
-
 };
+
+export const TOGGLE_MONOLOGUE = 'TOGGLE_MONOLOGUE';
+export const toggleMonologue = (id) => ({
+  type: TOGGLE_MONOLOGUE,
+  id
+});
 
