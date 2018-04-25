@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { fetchMonologues, toggleMonologue } from '../actions/monologue';
+import AddCommentForm from './AddCommentForm';
+import { fetchMonologues, toggleMonologue, toggleComments } from '../actions/monologue';
 
 class MonologueList extends Component {
 
@@ -13,13 +13,26 @@ class MonologueList extends Component {
     this.props.dispatch(toggleMonologue(id));
   }
 
-  render() {
+  toggleComments(id) {
+    this.props.dispatch(toggleComments(id));
+  }
 
+  render() {
     const monologue = this.props.monologues.map((monologue, index) => {
+
+      let comments = '';
+      if (!monologue.areCommentsHidden && !monologue.isHidden) {
+        comments = monologue.comments.map((comment, index) => <p key={index}>{comment.comment}</p>);
+      }
+
       return (<li key={index}>
         <strong>{monologue.title}</strong> by {monologue.playwright}
-        <button type="button" onClick={(e) => this.toggleHidden(monologue.id)}>{monologue.isHidden ? 'Show Monologue' : 'Hide Monologue'}</button>
-        {monologue.isHidden ? '' : monologue.text.map((line, index) => <p key={index}>{line}</p>)}
+        <button type="button" onClick={() => this.toggleHidden(monologue.id)}>{monologue.isHidden ? 'Show Monologue' : 'Hide Monologue'}</button>
+        {monologue.isHidden ? '' : <button type="button" onClick={() => this.toggleComments(monologue.id)}>{monologue.areCommentsHidden ? 'Show comments' : 'Hide comments'}</button>}
+        {monologue.isHidden ? '' : <button type="button" onClick={() => console.log('add comment')}>Add comment</button>}
+        <AddCommentForm key={monologue.id} form={monologue.id} monologueId={monologue.id} />
+        {monologue.isHidden ? '' : monologue.text.map((line, index) => <p key={index}>{index + 1}: {line}</p>)}
+        {comments}
       </li>);
     });
 

@@ -19,7 +19,7 @@ export const fetchMonologueError = error => ({
 
 export const fetchMonologues = () => dispatch => {
   dispatch(fetchMonologueRequest());
-  return fetch(API_BASE_URL)
+  return fetch(`${API_BASE_URL}/monologues/`)
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
@@ -36,3 +36,14 @@ export const toggleMonologue = (id) => ({
   id
 });
 
+export const TOGGLE_COMMENTS = 'TOGGLE_COMMENTS';
+export const toggleComments = (id) => ({
+  type: TOGGLE_COMMENTS,
+  id
+});
+
+export const TOGGLE_ADD_FORM = 'TOGGLE_ADD_FORM';
+export const toggleAddForm = isAddFormHidden => ({
+  type: TOGGLE_ADD_FORM,
+  isAddFormHidden
+});
