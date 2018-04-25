@@ -15,7 +15,7 @@ class AddMonologueForm extends Component {
     const pureText = contentBlocks.map(item => item.text);
     values.text = pureText;
 
-    return fetch(API_BASE_URL, {
+    return fetch(`${API_BASE_URL}/monologues`, {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {

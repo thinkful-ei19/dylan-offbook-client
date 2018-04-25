@@ -1,11 +1,8 @@
 import { FETCH_MONOLOGUE_REQUEST, FETCH_MONOLOGUE_SUCCESS, FETCH_MONOLOGUE_ERROR, TOGGLE_MONOLOGUE, TOGGLE_ADD_FORM, TOGGLE_COMMENTS } from '../actions/monologue';
-import { FETCH_COMMENTS_REQUEST, FETCH_COMMENTS_SUCCESS, FETCH_COMMENTS_ERROR } from '../actions/comment';
+import { FETCH_COMMENTS_REQUEST, FETCH_COMMENTS_SUCCESS, FETCH_COMMENTS_ERROR, TOGGLE_ADD_COMMENT } from '../actions/comment';
 
 const initialState = {
   monologues: [],
-  isHidden: true,
-  isAddFormHidden: false,
-  areCommentsHidden: true,
   loading: false,
   error: null
 };
@@ -18,9 +15,6 @@ export function monologueReducer(state = initialState, action) {
     return Object.assign({}, state, {
       loading: false,
       error: null,
-      isHidden: true,
-      isAddFormHidden: false,
-      areCommentsHidden: true,
       monologues: action.monologues
     });
   }
@@ -68,6 +62,15 @@ export function monologueReducer(state = initialState, action) {
       loading: false,
       error: action.error
     });
+  }
+  else if (action.type === TOGGLE_ADD_COMMENT) {
+    const newArr = state.monologues.map(monologue => {
+      if (monologue.id !== action.id) {
+        return monologue;
+      }
+      return Object.assign({}, monologue, { isAddCommentHidden: !monologue.isAddCommentHidden });
+    });
+    return Object.assign({}, state, { monologues: newArr });
   }
 
   return state;

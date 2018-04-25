@@ -30,3 +30,9 @@ export const fetchComments = (monologueId) => dispatch => {
     .then((data) => dispatch(fetchCommentsSuccess(data, monologueId)))
     .catch(err => dispatch(fetchCommentsError(err)));
 };
+
+export const TOGGLE_ADD_COMMENT = 'TOGGLE_ADD_COMMENT';
+export const toggleAddComment = id => ({
+  type: TOGGLE_ADD_COMMENT,
+  id
+});
