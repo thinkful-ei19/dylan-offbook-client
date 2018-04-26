@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { API_BASE_URL } from '../config';
 import { connect } from 'react-redux';
-import { EditorState } from 'draft-js';
 import { fetchMonologues, toggleAddForm } from '../actions/monologue';
 import MyEditor from './Editor';
 import 'draft-js/dist/Draft.css';

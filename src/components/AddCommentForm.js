@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { API_BASE_URL } from '../config';
 import { connect } from 'react-redux';
-import { fetchMonologues } from '../actions/monologue';
 import { fetchComments } from '../actions/comment';
 
 class AddCommentForm extends Component {
@@ -13,7 +12,7 @@ class AddCommentForm extends Component {
       body: JSON.stringify(values),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.authToken}`
+        Authorization: `Bearer ${this.props.authToken}`
       }
     })
       .then(res => {

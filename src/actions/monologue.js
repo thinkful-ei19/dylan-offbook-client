@@ -19,6 +19,7 @@ export const fetchMonologueError = error => ({
 
 export const fetchMonologues = (authToken) => dispatch => {
   dispatch(fetchMonologueRequest());
+  // console.log(authToken);
   return fetch(`${API_BASE_URL}/monologues`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${authToken}` }

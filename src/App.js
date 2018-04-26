@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
-import MonologueList from './components/MonologueList';
-import AddMonologueForm from './components/AddMonologueForm';
 import LandingPage from './components/LandingPage';
 import './App.css';
-import { refreshAuthToken } from './actions/auth';
 import Dashboard from './components/Dashboard';
 import RegistrationPage from './components/RegistrationPage';
 import HeaderBar from './components/HeaderBar';

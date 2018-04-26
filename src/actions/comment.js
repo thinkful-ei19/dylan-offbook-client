@@ -20,8 +20,10 @@ export const fetchCommentsError = error => ({
 
 export const fetchComments = (monologueId, authToken) => dispatch => {
   dispatch(fetchCommentsRequest());
+  console.log(authToken);
   return fetch(`${API_BASE_URL}/monologues/${monologueId}`, {
     headers: {
+      method: 'GET',
       Authorization: `Bearer ${authToken}`
     }
   })
