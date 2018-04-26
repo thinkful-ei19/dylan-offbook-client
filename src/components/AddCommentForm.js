@@ -12,7 +12,8 @@ class AddCommentForm extends Component {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.authToken}`
       }
     })
       .then(res => {
@@ -27,7 +28,7 @@ class AddCommentForm extends Component {
         }
         return;
       })
-      .then(() => this.props.dispatch(fetchComments(id)))
+      .then(() => this.props.dispatch(fetchComments(id, this.props.authToken)))
       .then(() => this.props.reset())
       .catch(err => {
         const { reason, message, location } = err;
@@ -59,6 +60,7 @@ class AddCommentForm extends Component {
 }
 
 const mapStateToProps = state => ({
+  authToken: state.auth.authToken,
   id: state.monologueReducer.id
 });
 

@@ -17,10 +17,11 @@ export const fetchMonologueError = error => ({
   error
 });
 
-export const fetchMonologues = () => dispatch => {
+export const fetchMonologues = (authToken) => dispatch => {
   dispatch(fetchMonologueRequest());
-  return fetch(`${API_BASE_URL}/monologues/`, {
-    headers: { Authorization: `Bearer ${localStorage.authToken}` }
+  return fetch(`${API_BASE_URL}/monologues`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${authToken}` }
   })
     .then(res => {
       if (!res.ok) {

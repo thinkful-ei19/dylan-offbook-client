@@ -7,7 +7,7 @@ import { toggleAddComment } from '../actions/comment';
 class MonologueList extends Component {
 
   componentDidMount() {
-    this.props.dispatch(fetchMonologues());
+    this.props.dispatch(fetchMonologues(this.props.authToken));
   }
 
   toggleHidden(id) {
@@ -54,6 +54,7 @@ class MonologueList extends Component {
 }
 
 const mapStateToProps = state => ({
+  authToken: state.auth.authToken,
   monologues: state.monologueReducer.monologues
 });
 

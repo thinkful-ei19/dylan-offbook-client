@@ -7,45 +7,19 @@ import AddMonologueForm from './components/AddMonologueForm';
 import LandingPage from './components/LandingPage';
 import './App.css';
 import { refreshAuthToken } from './actions/auth';
-import { Dashboard } from './components/Dashboard';
-import { RegistrationPage } from './components/RegistrationPage';
-import { HeaderBar } from './components/HeaderBar';
+import Dashboard from './components/Dashboard';
+import RegistrationPage from './components/RegistrationPage';
+import HeaderBar from './components/HeaderBar';
 
 class App extends Component {
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.loggedIn && this.props.loggedIn) {
-      this.startPeriodicRefresh();
-    } else if (prevProps.loggedIn && !this.props.loggedIn) {
-      this.stopPeriodicRefresh();
-    }
-  }
-
-  componentWillUnmount() {
-    this.stopPeriodicRefresh();
-  }
-
-  startPeriodicRefresh() {
-    this.refreshInterval = setInterval(() => this.props.dispatch(refreshAuthToken(), 60 * 60 * 1000));
-  }
-
-  stopPeriodicRefresh() {
-    if (!this.refreshInterval) {
-      return;
-    }
-    clearInterval(this.refreshInterval);
-  }
 
   render() {
     return (
       <div>
-        {/* <HeaderBar /> */}
-        {/* <Route exact path="/" component={LandingPage} /> */}
-        {/* <Route exact path="/dashboard" component={Dashboard} /> */}
-        {/* <Route exact path="/register" component={RegistrationPage} /> */}
-        {/* <LandingPage /> */}
-        <AddMonologueForm />
-        <MonologueList />
+        <HeaderBar />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/register" component={RegistrationPage} />
       </div>
     );
   }

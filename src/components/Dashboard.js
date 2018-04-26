@@ -3,24 +3,21 @@ import { connect } from 'react-redux';
 import RequiresLogin from './RequiresLogin';
 import { fetchProtectedData } from '../actions/protected-data';
 import MonologueList from './MonologueList';
+import AddMonologueForm from './AddMonologueForm';
 
 export class Dashboard extends React.Component {
-  componentDidMount() {
-    console.log(this);
-    // fetchProtectedData();
-    this.props.dispatch(fetchProtectedData());
-  }
 
   render() {
     return (
-      <MonologueList />
+      <div>
+        <AddMonologueForm />
+        <MonologueList />
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { currentUser } = state.auth;
-
   return {
     username: state.auth.currentUser.username,
     protectedData: state.protectedData.data

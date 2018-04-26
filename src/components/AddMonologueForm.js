@@ -19,7 +19,8 @@ class AddMonologueForm extends Component {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.props.authToken}`
       }
     })
       .then(res => {
@@ -60,6 +61,8 @@ class AddMonologueForm extends Component {
 
   render() {
 
+    // console.log(this.props.token);
+
     const addForm = (<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
       <label htmlFor="title">Title</label>
       <Field name="title" id="title" type="text" component="input" />
@@ -80,6 +83,7 @@ class AddMonologueForm extends Component {
 }
 
 const mapStateToProps = state => ({
+  authToken: state.auth.authToken,
   editorState: state.editorReducer.editorState,
   isAddFormHidden: state.monologueReducer.isAddFormHidden
 });

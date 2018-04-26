@@ -35,13 +35,13 @@ export const authError = error => ({
 const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
+  // console.log(decodedToken);
   dispatch(authSuccess(decodedToken.user));
   saveAuthToken(authToken);
 };
 
 export const login = (username, password) => dispatch => {
   dispatch(authRequest());
-  // console.log(username, password);
   return fetch(`${API_BASE_URL}/login`, {
     method: 'POST',
     headers: {
@@ -53,8 +53,9 @@ export const login = (username, password) => dispatch => {
     })
   })
     .then(res => res.json())
-    // .then(res => normalizeResponseErrors(res))
-    .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
+    .then(({ authToken }) => {
+      storeAuthInfo(authToken, dispatch);
+    })
     .catch(err => {
       const { code } = err;
       const message = code === 401 ? 'Incorrect username or password' : 'Unable to login, please try again';

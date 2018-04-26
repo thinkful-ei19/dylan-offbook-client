@@ -18,9 +18,13 @@ export const fetchCommentsError = error => ({
   error
 });
 
-export const fetchComments = (monologueId) => dispatch => {
+export const fetchComments = (monologueId, authToken) => dispatch => {
   dispatch(fetchCommentsRequest());
-  return fetch(`${API_BASE_URL}/monologues/${monologueId}`)
+  return fetch(`${API_BASE_URL}/monologues/${monologueId}`, {
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
