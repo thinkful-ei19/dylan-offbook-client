@@ -19,7 +19,9 @@ export const fetchMonologueError = error => ({
 
 export const fetchMonologues = () => dispatch => {
   dispatch(fetchMonologueRequest());
-  return fetch(`${API_BASE_URL}/monologues/`)
+  return fetch(`${API_BASE_URL}/monologues/`, {
+    headers: { Authorization: `Bearer ${localStorage.authToken}` }
+  })
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);

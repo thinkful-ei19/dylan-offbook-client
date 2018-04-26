@@ -28,6 +28,7 @@ class AddCommentForm extends Component {
         return;
       })
       .then(() => this.props.dispatch(fetchComments(id)))
+      .then(() => this.props.reset())
       .catch(err => {
         const { reason, message, location } = err;
         if (reason === 'Validation Error') {
@@ -60,8 +61,6 @@ class AddCommentForm extends Component {
 const mapStateToProps = state => ({
   id: state.monologueReducer.id
 });
-
-// export default connect(mapStateToProps)(AddCommentForm);
 
 const ConnectedAddCommentForm = connect(mapStateToProps)(AddCommentForm);
 

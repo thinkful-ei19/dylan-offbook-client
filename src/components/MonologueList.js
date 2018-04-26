@@ -24,10 +24,14 @@ class MonologueList extends Component {
 
   render() {
     const monologue = this.props.monologues.map((monologue, index) => {
-      console.log(monologue);
       let comments = '';
       if (!monologue.areCommentsHidden && !monologue.isHidden) {
-        comments = monologue.comments.map((comment, index) => <p key={index}>{comment.comment}</p>);
+        comments = monologue.comments.map((comment, index) => <li key={index}>{comment.comment}</li>);
+      }
+
+      let addCommentForm = '';
+      if (!monologue.isAddCommentHidden && !monologue.isHidden) {
+        addCommentForm = (<AddCommentForm key={monologue.id} form={monologue.id} monologueId={monologue.id} />);
       }
 
       return (<li key={index}>
@@ -35,9 +39,9 @@ class MonologueList extends Component {
         <button type="button" onClick={() => this.toggleHidden(monologue.id)}>{monologue.isHidden ? 'Show Monologue' : 'Hide Monologue'}</button>
         {monologue.isHidden ? '' : <button type="button" onClick={() => this.toggleComments(monologue.id)}>{monologue.areCommentsHidden ? 'Show comments' : 'Hide comments'}</button>}
         {monologue.isHidden ? '' : <button type="button" onClick={() => this.toggleAddComment(monologue.id)}>Add comment</button>}
-        {(monologue.isAddCommentHidden) ? '' : <AddCommentForm key={monologue.id} form={monologue.id} monologueId={monologue.id} />}
-        {monologue.isHidden ? '' : monologue.text.map((line, index) => <p key={index}>{index + 1}: {line}</p>)}
-        {comments}
+        {addCommentForm}
+        {monologue.isHidden ? '' : monologue.text.map((line, index) => <p key={index}>{line}</p>)}
+        <ul>{comments}</ul>
       </li>);
     });
 
