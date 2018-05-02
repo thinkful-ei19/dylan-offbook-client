@@ -34,7 +34,7 @@ class AddMonologueForm extends Component {
         }
         return;
       })
-      .then(() => this.props.dispatch(fetchMonologues()))
+      .then(() => this.props.dispatch(fetchMonologues(this.props.authToken)))
       .then(() => this.props.reset())
       .then(() => this.props.dispatch(emptyEditorState()))
       .catch(err => {
