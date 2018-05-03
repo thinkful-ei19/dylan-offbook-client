@@ -62,20 +62,20 @@ class AddMonologueForm extends Component {
 
     // console.log(this.props.token);
 
-    const addForm = (<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+    const addForm = (<form className="addMonologueForm" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
       <label htmlFor="title">Title</label>
       <Field name="title" id="title" type="text" component="input" />
       <label htmlFor="playwright">Playwright</label>
       <Field name="playwright" id="playwright" type="text" component="input" />
       <label htmlFor="text">Text</label>
       <Field name="text" id="text" type="text" component={MyEditor} />
-      <button type="submit">Submit</button>
+      <button className="addMonologueForm__button" type="submit">Submit</button>
     </form>);
 
     return (
       <div>
         {this.props.isAddFormHidden ? '' : addForm}
-        <button onClick={() => this.toggleAddForm()}>{this.props.isAddFormHidden ? 'Add monologue' : 'Hide form'}</button>
+        <button className="addMonologueForm__toggle" onClick={() => this.toggleAddForm()}>{this.props.isAddFormHidden ? 'Add monologue' : 'Hide form'}</button>
       </div>
     );
   }

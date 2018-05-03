@@ -11,7 +11,7 @@ export function LandingPage(props) {
 
   return (
     <div className="landing">
-      <h2>Welcome to Offbook</h2>
+      <h2 className="landing__heading">Welcome to Offbook</h2>
       <LoginForm />
       <Link to="/register">Register</Link>
     </div>

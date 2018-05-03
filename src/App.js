@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage';
-import './App.css';
 import Dashboard from './components/Dashboard';
 import RegistrationPage from './components/RegistrationPage';
 import HeaderBar from './components/HeaderBar';

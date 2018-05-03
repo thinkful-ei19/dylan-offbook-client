@@ -9,7 +9,7 @@ import { monologueReducer } from './reducers/monologue';
 import { editorReducer } from './reducers/editor';
 import { authReducer } from './reducers/auth';
 import { protectedDataReducer } from './reducers/protected-data';
-import './index.css';
+import './styles/css/index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { loadAuthToken } from './local-storage';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RichUtils } from 'draft-js';
+// import { RichUtils } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import 'draft-js-emoji-plugin/lib/plugin.css';
@@ -16,15 +16,15 @@ class MyEditor extends Component {
     this.props.dispatch(updateEditorState(editorState));
   }
 
-  _onBoldClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.props.editorState, 'BOLD'));
-  }
+  // _onBoldClick() {
+  //   this.onChange(RichUtils.toggleInlineStyle(this.props.editorState, 'BOLD'));
+  // }
 
   render() {
     return (
       <div>
         <div className="editor-wrap">
-          <button type="button" onClick={this._onBoldClick.bind(this)}>Bold</button>
+          {/* <button type="button" onClick={this._onBoldClick.bind(this)}>Bold</button> */}
           <div className="editor">
             <Editor
               editorState={this.props.editorState}
