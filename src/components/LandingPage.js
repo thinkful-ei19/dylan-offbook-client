@@ -12,6 +12,7 @@ export function LandingPage(props) {
   return (
     <div className="landing">
       <h2 className="landing__heading">Welcome to Offbook</h2>
+      <p>Offbook is a home for your monologue organization! Simply add a monologue with a title, playwright and text and save it to your home! You can add comments and take notes on each monologue. Login or sign up below!</p>
       <LoginForm />
       <Link to="/register">Register</Link>
     </div>

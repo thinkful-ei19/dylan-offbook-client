@@ -50,7 +50,8 @@ body {
       cursor: pointer; }
 
 #username,
-#password {
+#password,
+#passwordConfirm {
   border: 2px solid #543D99;
   border-radius: 3px;
   padding: 5px 10px; }
@@ -88,3 +89,23 @@ body {
 
 .dashboard {
   margin: 50px; }
+
+.monologues {
+  list-style-type: none;
+  padding: 0; }
+  .monologues__item {
+    margin-bottom: 10px; }
+  .monologues__toggle, .monologues__toggle-comments, .monologues__toggle-add-comment {
+    padding: 5px;
+    margin: 0 5px;
+    background: none;
+    border: 2px solid #679986;
+    color: #679986;
+    border-radius: 5px; }
+    .monologues__toggle:hover, .monologues__toggle-comments:hover, .monologues__toggle-add-comment:hover {
+      background-color: #679986;
+      color: #fff; }
+  .monologues__wrapper {
+    display: flex; }
+  .monologues__lines {
+    flex-basis: 60%; }

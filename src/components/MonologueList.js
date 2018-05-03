@@ -34,21 +34,28 @@ class MonologueList extends Component {
         addCommentForm = (<AddCommentForm key={monologue.id} form={monologue.id} monologueId={monologue.id} />);
       }
 
-      return (<li key={index}>
+      return (<li className="monologues__item" key={index}>
         <strong>{monologue.title}</strong> by {monologue.playwright}
-        <button type="button" onClick={() => this.toggleHidden(monologue.id)}>{monologue.isHidden ? 'Show Monologue' : 'Hide Monologue'}</button>
-        {monologue.isHidden ? '' : <button type="button" onClick={() => this.toggleComments(monologue.id)}>{monologue.areCommentsHidden ? 'Show comments' : 'Hide comments'}</button>}
-        {monologue.isHidden ? '' : <button type="button" onClick={() => this.toggleAddComment(monologue.id)}>Add comment</button>}
+        <button className="monologues__toggle" type="button" onClick={() => this.toggleHidden(monologue.id)}>{monologue.isHidden ? 'Show Monologue' : 'Hide Monologue'}</button>
+        {monologue.isHidden ? '' : <button className="monologues__toggle-comments" type="button" onClick={() => this.toggleComments(monologue.id)}>{monologue.areCommentsHidden ? 'Show comments' : 'Hide comments'}</button>}
+        {monologue.isHidden ? '' : <button className="monologues__toggle-add-comment" type="button" onClick={() => this.toggleAddComment(monologue.id)}>Add comment</button>}
         {addCommentForm}
-        {monologue.isHidden ? '' : monologue.text.map((line, index) => <p key={index}>{line}</p>)}
-        <ul>{comments}</ul>
+        <div className="monologues__wrapper">
+          <div className="monologues__lines">
+            {monologue.isHidden ? '' : monologue.text.map((line, index) => <p key={index}>{line}</p>)}
+          </div>
+          <ul>{comments}</ul>
+        </div>
       </li>);
     });
 
     return (
-      <ul>
-        {monologue}
-      </ul>
+      <div>
+        <p><strong>Saved Monologues</strong></p>
+        <ul className="monologues">
+          {monologue}
+        </ul>
+      </div>
     );
   }
 }
